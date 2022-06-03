@@ -1,0 +1,99 @@
+#include <iostream>
+
+using namespace std;
+
+const int m=50;
+
+class ITEMS
+{
+    int itemCode[m];
+    float itemPrice[m];
+    int count;
+
+public:
+    void CNT(void){count = 0;} //initialize count to 0
+    void getitem(void);
+    void displaySum(void);
+    void remove(void);
+    void displayItems(void);
+};
+
+void ITEMS::getitem(void)
+{
+    cout << "enter item code :" << endl;
+    cin >> itemCode[count];
+
+    cout << "enter item cost :" << endl;
+    cin >> itemPrice[count];
+
+    count++;
+}
+
+void ITEMS::displaySum(void)
+{
+    int sum = 0;
+    for(int i = 0; i < count; i++)
+    {
+
+        sum = sum + itemPrice[i];
+    }
+            cout << "total sum :" << sum << endl;
+}
+
+void ITEMS::remove(void)
+{
+    cout << "select an item to delete: " << endl;
+    int a;
+    cin >> a;
+
+    for(int i = 0; i < count; i++)
+    {
+       if(itemCode[i] == a)
+       {
+           itemPrice[i] =  0;
+       }
+
+    }
+
+}
+
+void ITEMS::displayItems(void)
+{
+    cout << "\nCode Price\n" << endl;
+    for(int i = 0; i < count; i++)
+    {
+        cout << "\n" << itemCode[i];
+        cout << " " << itemPrice[i];
+    }
+    cout << "\n" ;
+}
+int main()
+{
+    ITEMS order;
+    order.CNT();
+    int x;
+    do
+    {
+        cout << "\n You can do the following:";
+        cout << endl << "Enter appropriate number" <<endl;
+        cout << "1: Add an Item" << endl;
+        cout << "2: Display total value" << endl;
+        cout << "3: Delete an item" << endl;
+        cout << "4: Display all item" << endl;
+        cout << "5: Quit" << endl;
+        cout << "What is your operation?" << endl;
+        cin >> x;
+        switch(x)
+        {
+            case 1: order.getitem(); break;
+            case 2: order.displaySum(); break;
+            case 3: order.remove(); break;
+            case 4: order.displayItems(); break;
+            case 5: break;
+            default : cout << "Error in input, try again";
+        }
+
+    }while(x != 5);
+    return 0;
+}
+
